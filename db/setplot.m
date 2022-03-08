@@ -29,7 +29,6 @@ SetDefaultValue(1, 'figdim'			, [widh_def .2]);
 FNS_0 = get(gca,'FontSize');
 FNS0	= FNS_0 - 0;
 
-
 xd = size(figdim);
 
 if ~(max(xd) == 1)
@@ -43,7 +42,7 @@ end
 
 SetDefaultValue(2, 'fntsize'		, FNS0);
 SetDefaultValue(3, 'y_digits'		, 1);
-SetDefaultValue(4, 'axLineWidth', 6/5);
+SetDefaultValue(4, 'axLineWidth', 5/5);
 SetDefaultValue(5, 'fighandle'	, gca);
 
 % ff = get(fighandle,'Position');
@@ -87,8 +86,8 @@ end
 	
 % get axes handle and increase the thickness of lnes and choose grid value for color
 	ax = gca; 
-% 	ax.GridAlpha = .15;  
  	ax.LineWidth = axLineWidth;
+% 	ax.GridAlpha = .15;    
 	
 	% else
   % if two input arguments are given then same as above except for last bit
