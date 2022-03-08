@@ -8,4 +8,4 @@ Then click on "add with subfolders" and locate the "db.toolbox" directory that y
 Or simply do an addpath(genpath( path-2-db.toolbox )) call where path-2-db.toolbox is the path/directory where the toolbox was downloaded and unzipped to.
 For instance, if you have the toolbox in your d: drive, then put addpath(genpath('d:/db.toolbox')) at the beginning of your script.
 
-db, Stockholm 08.03.2022
+Stockholm 08.03.2022
