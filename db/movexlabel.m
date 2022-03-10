@@ -1,5 +1,6 @@
 function movexlabel(postn,fig_handle)
 % move the position of the x-axis label
+% call as:		movexlabel(-.2)
 % =======================================================================================
 % input
 % adjst:			(3x1), location vector to move the entry [leftright updown threeD]
@@ -9,7 +10,7 @@ function movexlabel(postn,fig_handle)
 % leftright:	scalar, how much to move the x-axis label to up or down.
 % threeD:			scalar, this is optional, when using 3-D figures.
 %
-% call as:		setxlabel(-.2) to move the x-axis lable to the down by .2.
+% call as:		movexlabel(-.2) to move the x-axis lable to the down by .2.
 %							or pass additional parameters if needed. ie.
 %							setxlabel([-.2 -.3 20],figure_handle);
 % =======================================================================================
