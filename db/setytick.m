@@ -33,7 +33,7 @@ ffyy = cellstr(num2str(ytck',s22f));
 % add normal 0 lable for 0 axis
 if ~isempty(f0)
 	ffyy{f0} = '0';
-end;
+end
 
 Matversion = version;
 if str2double(Matversion(13:16)) < 2015

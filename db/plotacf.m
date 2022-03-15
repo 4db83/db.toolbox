@@ -13,7 +13,8 @@ function varargout = plotacf(x,no_acf,ylims,plot_dims,FNT,Legnd,plfg)
 % % 
 
 % set the plotting dimensions if needed/changed
-plot_dims0        = [.38 .234];
+% plot_dims0        = [.38 .234];
+plot_dims0        = [.38 .21];
 left_fig_position = .08;
 subplot_space     = .98;
 

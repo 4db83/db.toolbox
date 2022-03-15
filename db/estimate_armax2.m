@@ -1,4 +1,4 @@
-function [theta,sig2,vcv,resids,yhat] = estimate_armax2(depvar,ar,ma);
+function [theta,sig2,vcv,resids,yhat] = estimate_armax2(depvar,ar,ma)
 %function [theta,sig2,vcv,resids,yhat] = estimate_armax2(depvar,ar,ma);
 %
 % This program is just a nicer front-end to the existing ARMAX proc.

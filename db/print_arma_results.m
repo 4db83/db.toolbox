@@ -119,7 +119,9 @@ if isempty(q_max); q_max = 0; end
 
 NP  = max(p_max,q_max);
 
-lagPols = cell(NP+1,4);
+% lagPols = cell(NP+1,4);
+% fill with nans rather than zeros.
+lagPols = num2cell(nan(NP+1,4));
 
 if p_max~=0
 	lagPols(1,1) = {'AR(p)'};
