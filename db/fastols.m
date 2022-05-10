@@ -1,6 +1,6 @@
 function [beta, aout] = fastols(y,X,no_const)
 % F: fit beta parameter by OLS
-% beta = fastols(y,x)
+% beta = fastols(y,x), set no_constant = 1 to exclude intercept term
 SetDefaultValue(3,'no_const',0)			% default is to include a constant
 
 % remove any missing/nan values
@@ -46,3 +46,5 @@ aout.u = u;
 aout.sigma2 = sigma_2;
 aout.var_beta = Var_beta;
 aout.SSE = SSE;
+aout.se = sqrt(diag(Var_beta));
+
