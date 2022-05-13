@@ -168,9 +168,9 @@ end;
 
 %% CHECK FOR NANS
 if isempty(x)
-	Inan = anynan(y);
+	Inan = anynans(y);
 else
-	Inan = anynan(y,x);
+	Inan = anynans(y,x);
 end
 % remove nans from y
 y = y(~Inan,:);

@@ -34,7 +34,7 @@ KK = size(X,2);
 xpx			= X'*X;
 invxpx	= xpx\eye(KK);
 beta		= invxpx*(X'*y);        
-% beta  = X\y; IS MUCH MUCH SLOWER!!!
+% beta  = X\y; % IS MUCH MUCH SLOWER!!!
 
 % compute also OLS residuals and SSE = u'*u;
 u		= y-X*beta;
