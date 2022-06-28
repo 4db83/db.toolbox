@@ -4,7 +4,7 @@ function [beta, aout] = fastols(y,X,no_const)
 SetDefaultValue(3,'no_const',0)			% default is to include a constant
 
 % remove any missing/nan values
-Inan	= anynan([y X]);
+Inan	= anynans([y X]);
 y			= y(~Inan,:); 
 X			= X(~Inan,:);
 
@@ -42,9 +42,10 @@ SSE	= u'*u;
 sigma_2		= SSE/T;							% this is the MLE variance
 Var_beta	= invxpx.*sigma_2;		% standard OLS var(beta) not HAC
 % output a structure
-aout.u = u;
+aout.u      = u;
 aout.sigma2 = sigma_2;
-aout.var_beta = Var_beta;
-aout.SSE = SSE;
-aout.se = sqrt(diag(Var_beta));
+aout.var    = Var_beta;
+aout.SSE    = SSE;
+aout.se     = sqrt(diag(Var_beta));
+aout.tstat  = beta./aout.se;
 

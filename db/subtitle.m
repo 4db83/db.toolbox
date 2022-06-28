@@ -5,14 +5,14 @@ function varargout = subtitle(titlename,adjst,FontSize,useLaTex)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % get title handle 
-title_handle	= title(titlename);
+title_handle	= title(titlename,'Interpreter','Latex');
 FNS0 = get(title_handle,'FontSize');
 
 SetDefaultValue(2 ,'adjst'		, -1.1);
 % set default font size 
 SetDefaultValue(3 ,'FontSize'	, FNS0);
 % use Latex in subtilte
-SetDefaultValue(4 ,'useLaTex'	, 0);
+SetDefaultValue(4 ,'useLaTex'	, 1);
 
 % use Latex if useLaTex == 1
 if useLaTex==1
@@ -34,7 +34,7 @@ end
 
 set(title_handle,'Position',new_pos);
 set(title_handle,'FontSize',FontSize);
-set(title_handle,'FontWeight','Normal','Units','normalized','FontName','Times New Roman');
+set(title_handle,'FontWeight','Normal','Units','normalized','FontName','Times New Roman','Interpreter','Latex');
 
 if nargout > 0
 	varargout{1} = title_handle;

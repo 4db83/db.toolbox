@@ -1,7 +1,7 @@
-function [S, ac, pac] = plotacf(x, No_acf, ylims, plot_dims, FNT)
-% function [S,ac,pac] = plotacf(x, No_acf, ylims, plot_dims, FNT)
+function [ac, pac, S] = plotacf(x, No_acf, ylims, plot_dims, FNT)
+% function [ac, pac, S] = plotacf(x, No_acf, ylims, plot_dims, FNT)
 %   
-% CALL AS: [S,ac,pac] = plotacf(x,50,[-.2 -.2],[.38 .20],22);
+% CALL AS: [ac, pac, S] = plotacf(x,50,[-.2 -.2],[.38 .20],22);
 % Plots the sample ACF and PACF values.
 %
 % or as simply:

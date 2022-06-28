@@ -18,9 +18,6 @@ function hhh=hline(y,in1,in2,LW,CLR,LOS,LFNTS)
 % returns a handle to a green horizontal line on the current axes at y=42, and creates a text object on
 % the current axes, close to the line, which reads "The Answer".
 %
-% hline also supports vector inputs to draw multiple lines at once.  For example,
-%
-% hline([4 8 12],{'g','r','b'},{'l1','lab2','LABELC'})
 %
 % draws three lines with the appropriate labels and colors.
 % 
@@ -157,9 +154,9 @@ else
         yrange=yy(2)-yy(1);
         yunit=(y-yy(1))/yrange;
         if yunit<0.2
-            text(x(1) + horizontal_offset*(x(2)-x(1)),y + vertical_offset*yrange,label,'color',get(h,'color'),'Fontsize',LFNTS);
+            text(x(1) + horizontal_offset*(x(2)-x(1)),y + vertical_offset*yrange,label,'color',CLR,'Fontsize',LFNTS);
         else
-            text(x(1) + horizontal_offset*(x(2)-x(1)),y - vertical_offset*yrange,label,'color',get(h,'color'),'Fontsize',LFNTS);
+            text(x(1) + horizontal_offset*(x(2)-x(1)),y - vertical_offset*yrange,label,'color',CLR,'Fontsize',LFNTS);
         end
     end
 

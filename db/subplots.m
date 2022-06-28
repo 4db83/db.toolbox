@@ -128,7 +128,7 @@ for i = 1:k
 		else
 			dates_nan = dates;
 		end;
-		setdateticks(dates_nan,date_fmt,intrval);
+% 		setdateticks(dates_nan,date_fmt,intrval);
 	end;
 	
  	if ~isempty(names)

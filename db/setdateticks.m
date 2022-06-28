@@ -14,11 +14,11 @@ function step_sizes_out = setdateticks(dates,Width,dateformat,FNTS,date_space,fi
 % get defaulf font size
 fonts0 = get(gca,'FontSize');
 
-SetDefaultValue(2, 'Width', 15);
-SetDefaultValue(3, 'dateformat', 0);
-SetDefaultValue(4, 'FNTS', fonts0);
-SetDefaultValue(5, 'date_space', 0);
-SetDefaultValue(6, 'fig_handle', gca);
+SetDefaultValue(2, 'Width'      , 15);
+SetDefaultValue(3, 'dateformat' , 0);
+SetDefaultValue(4, 'FNTS'       , fonts0);
+SetDefaultValue(5, 'date_space' , 0);
+SetDefaultValue(6, 'fig_handle' , gca);
 
 % Font name
 FName = 'Times New Roman';

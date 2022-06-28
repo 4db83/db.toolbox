@@ -24,7 +24,7 @@ SetDefaultValue(5,'INCLUDE_PW',0);	% set to 1 to include pre-whitening in LRV co
 SetDefaultValue(6,'Recession_indicator',[]);
 
 % remove any missing values
-Inan	= anynan([y x]);
+Inan	= anynans([y x]);
 y = y(~Inan,:); 
 x = x(~Inan,:);
 
@@ -78,7 +78,7 @@ LL		= -T/2*( log(2*pi) + log(SSE/T) + 1 );
 
 %% compute recession/expasion based R2
 if ~isempty(Recession_indicator)
-	[R2_exp,R2_rec] = Rsquared_rec(u,y,Recession_indicator);
+	[R2_exp, R2_rec] = Rsquared_rec(u,y,Recession_indicator);
 	
 % 	y_	= demean(y);
 % 	% compute the 1-sum(I.*uhat.^2)/sum(I.*(r-rbar).^2) ratio

@@ -1,4 +1,5 @@
 function clr_out = clr(indx)
+% color changing function. 
 
 Nindx = length(indx);
 
