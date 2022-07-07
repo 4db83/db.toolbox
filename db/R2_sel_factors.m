@@ -37,7 +37,7 @@ for jj = 1:nF_max
 	AIC_i(jj)		= ols_tmp.aic;
 	AICc_i(jj)	= ols_tmp.aicc;
 	BIC_i(jj)		= ols_tmp.bic;
-end;
+end
 
 selF.aic	= Ic(1:find(AIC_i == min(AIC_i )));
 selF.aicc = Ic(1:find(AICc_i== min(AICc_i)));

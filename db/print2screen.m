@@ -21,8 +21,10 @@ function print2screen(y, RowNames_in, ColNames_in, FMT, xlsout, WIDTH, SEP)
 
 structure_in	= isa(y,'struct');
 table_in			= isa(y,'table');
+timetable_in	= isa(y,'timetable');
 
-if table_in; ColNames_tmp = y.Properties.VariableNames(1:end)'; end
+if table_in;      ColNames_tmp = y.Properties.VariableNames(1:end)'; end
+if timetable_in;  ColNames_tmp = y.Properties.VariableNames(1:end)'; end
 
 if structure_in
 	RowNames_ = fieldnames(y);
@@ -33,9 +35,16 @@ elseif table_in
 	y					= table2array(y(:,2:end));
  	ColNames_ = ColNames_tmp(2:end);
 	[Nr, Nc]	= size(y);
-% 	disp(':ALJ:SKJ ')
+elseif timetable_in
+% 	RowNames_ = eval(['y.' char(y.Properties.VariableNames(1))]);
+%   RowNames_ = y.Time;
+  RowNames_ = datestr(datenum(y.Time));
+	y					= y.Variables;
+ 	ColNames_ = ColNames_tmp(1:end);
+	[Nr, Nc]	= size(y);
+  % 	disp(':ALJ:SKJ ')
 else
-	[Nr, Nc] = size(y);
+	[Nr, Nc]  = size(y);
 	RowNames_ = repmat( '		', Nr+1,1);
 end
 
@@ -49,11 +58,11 @@ ColName_default = cellstr([repmat('Col(',Nc,1) num2str((1:Nc)') repmat(')',Nc,1)
 
 if table_in; ColName_default = ColNames_; end
 
-FMT_0 = '%14.8f';
+FMT_0 = '%10.4f';
 
 % RowNames_in = RowNames_fields
 SetDefaultValue(2,'RowNames_in', RowNames_);
-SetDefaultValue(3,'ColNames',ColName_default);
+SetDefaultValue(3,'ColNames_in',ColName_default);
 SetDefaultValue(4,'FMT'			,FMT_0);
 SetDefaultValue(5,'xlsout'	,0);
 width_ = Nc*14 + 30;
@@ -96,19 +105,31 @@ if isnumeric(FMT)
 	elseif dim_FMT == 2
 		FMT = ['%' num2str(FMT(2)) '.' num2str(FMT(1)) 'f'];
 	else
-		disp('need sclar or 2 x 1 vector input');
+		disp('need scalar or 2 x 1 vector input');
 	end
 end
 
 if nargin == 1
 	if structure_in
 		info0.rnames	= RowNames;
+    info0.fmt = FMT_0;
+	  myprint_struct_funct(y,info0);	
 	elseif table_in
 		info0.rnames = RowNames_;
 		info0.cnames = ColNames_;
+    info0.fmt = FMT_0;
+	  myprint_struct_funct(y,info0);	
+	elseif timetable_in
+		info0.rnames = ['Date'; cellstr(RowNames_)];
+		info0.cnames = [ColNames_];
+%     info0.cnames = ['Date'; ColNames_];
+    info0.fmt = FMT_0;
+	  myprint_struct_funct(y,info0);	
+  else
+    info0.fmt = FMT_0;
+    myprint_struct_funct(y,info0);	
 	end
-	info0.fmt = FMT_0;
-	myprint_struct_funct(y,info0);	
+% if nargin ~= 1
 else 
 	if isstruct(RowNames)
 		myprint_struct_funct(y,RowNames);	
@@ -118,7 +139,7 @@ else
 		info0.cnames	= ColNames_;
 		myprint_struct_funct(y,info0);	
 	else
-		info_in.rnames	= RowNames;
+		info_in.rnames	= RowNames_in;
 		info_in.cnames	= ColNames_in;
 		info_in.fmt			= FMT;
 		info_in.width		= WIDTH;
@@ -385,7 +406,7 @@ else %  wrapping in this case is based on widest format in the list
 	fflagv		= zeros(nfmts,1);
 	decimalv	= zeros(nfmts,1);
 
-  for ii=1:nfmts;
+  for ii=1:nfmts
    f1 = strtok(fmt(ii,:),'%');
    f2 = strtok(f1,'.');
     if strcmp(f1,f2)

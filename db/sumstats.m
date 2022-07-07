@@ -16,8 +16,12 @@ function [Xsumstats,Xnames] = sumstats(X,XvarName,prnt2xls,prntformat,onsreen_di
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [Nr,Nc] = size(X);
 
-XvarName_default = cellstr(num2str((1:Nc)'));
-
+if isa(X,'timetable')
+  XvarName_default = X.Properties.VariableNames;
+  X = X.Variables;
+else
+  XvarName_default = cellstr(num2str((1:Nc)'));
+end
 SetDefaultValue(2,'XvarName'				,XvarName_default);
 SetDefaultValue(3,'prnt2xls'				,0 );
 SetDefaultValue(4,'prntformat'			,'%10.4f');
@@ -29,8 +33,8 @@ SetDefaultValue(6,'SPCE_XLS'				,1);					% Default 1=on, set to zero if not need
 
 for ii = 1:Nc
 	ACF0(:,ii)		= autocorr(removenan(X(:,ii)),3);
-	PACF0(:,ii)		= parcorr(removenan(X(:,ii)),3);
-end;
+	PACF0(:,ii)		= parcorr( removenan(X(:,ii)),3);
+end
 
 ACF		= ACF0(2:end,:);
 PACF	= PACF0(2:end,:);
@@ -74,7 +78,7 @@ if isempty(XvarName)
 	mpp.rnames	= ['{Variable}' tmp_'];
 else
 	mpp.rnames	= ['{Variable}' ; XvarName];
-end;
+end
 
 % set up printing structure
 % mp.fid		= FIDout;
@@ -85,18 +89,18 @@ mpp_xls					= mpp;
 mpp_xls.cnames	= char(Xnames_xls); 
 
 % print to screen
-if onsreen_display == 1;
+if onsreen_display == 1
 	myprint(Xsumstats,mpp);
 	sep(160)
-end;		
+end		
 
 if isnumeric(prnt2xls)
-	if prnt2xls == 1;
+	if prnt2xls == 1
 		if SPCE_XLS == 1
 			myprint2xls('summary_stats.xls',Xsumstats_xls,mpp_xls);
 		else
 			myprint2xls('summary_stats.xls',Xsumstats,mpp);
-		end;
+    end
 	end
 else
 	if SPCE_XLS == 1

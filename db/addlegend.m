@@ -1,6 +1,6 @@
 function h_leg = addlegend(varargin)%
 % QUICKLY ADD LEGEND TO PLOT WITH STANDARD SETTINGS
-% CALL AS:																		TopLeft TopRight BottomRight BottomLeft
+% CALL AS:	TopLeft TopRight BottomRight BottomLeft
 % 	addlegend(input_subselection_of_lines, CellofLegnames, Position either 1 3 5 7, Fontsize, Latex 1 Tex 2)
 % or simply without the input selection lines
 % 	addlegend(CellofLegnames, Position either 1 3 5 7, Fontsize, 'Latex' or 'Tex')
@@ -27,8 +27,8 @@ input_subselection_of_lines = ~iscell(varargin{1});
 
 % if Length_vargin
 
-% INTerPret = 'Tex';
-INTerPret = 'Latex';
+INTerPret = 'Tex';
+% INTerPret = 'Latex';
 
 if input_subselection_of_lines
 	

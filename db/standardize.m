@@ -25,8 +25,7 @@ function st=standardize(x,de_mean)
 
 if nargin < 2
 	de_mean = 1;
-end;
-
+end
 
 z_score_x = @(x) (x-nanmean(x)./nanstd(x));
 

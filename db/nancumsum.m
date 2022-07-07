@@ -13,7 +13,7 @@ store_tmp	= [];
 % loop through columsn of x if > 1.
 for i = 1:k
 	% find nan entries
-	Ix			= anynan(x(:,i));
+	Ix			= anynans(x(:,i));
 	% first nan entry
 	N_Ix		= sum(Ix);
 

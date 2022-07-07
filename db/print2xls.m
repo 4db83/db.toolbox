@@ -29,13 +29,22 @@ if ~isstring(datefrmat)
 	end
 end
 
-if istimetable(matx)
+% if input is a table rather than timetable, convert to table first
+if isa(matx,'table')
+  matx = table2timetable(matx);
+end
+
+if isa(matx,'timetable') % | isa(matx,'table')
 		% variable names
 		fldnams			= matx.Properties.VariableNames;
 		% data matrix
 		data2write	= matx.Variables;
 		% dates
-		date_strng	= datestr(matx.Properties.RowTimes,datefrmat);
+    if exist('matx.Date')
+      date_strng	= datestr(matx.Date,datefrmat);
+    else
+      date_strng	= datestr(matx.Time,datefrmat);
+    end
 		% now write to excel
  		xlswrite(xlsname,['dates', fldnams],				'Sheet1','A1');		% variable names
 		xlswrite(xlsname,prntstrng2xls(date_strng),	'Sheet1','A2');		% print dates as string

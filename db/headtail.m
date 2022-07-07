@@ -1,4 +1,5 @@
-function [] = head2tail(input_timetable, length_2_show)
+function [] = headtail(input_timetable, length_2_show)
+% show head 2 tail like in R
 
 SetDefaultValue(2,'length_2_show', 15);
 
