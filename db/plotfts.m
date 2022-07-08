@@ -1,4 +1,4 @@
-function varargout =  plotfts(ftsdata,legON,DateTickFrequency,DateFormat,LegNames,FNs)
+function varargout =  plotfts(ftsdata,DateTickFrequency,DateFormat,legON,LegNames,FNs)
 % function: does a quick plot of a financial times series object.
 % ------------------------------------------------------------------------------------------------------
 % To set custom legend names, call with legON = 0, ie., no legend and then call:
@@ -26,9 +26,9 @@ end
 
 names		= strrep(names1,'_','.');
 
-SetDefaultValue(2,'legON',1);
-SetDefaultValue(3,'DateTickFrequency',20);
+SetDefaultValue(2,'DateTickFrequency',50);
 SetDefaultValue(4,'DateFormat','yyyy:qq');
+SetDefaultValue(5,'legON',1);
 % SetDefaultValue(4,'DateFormat',1);
 SetDefaultValue(5,'LegNames',names);
 SetDefaultValue(6,'FNs',14);
@@ -45,15 +45,17 @@ end
 hndl.fig = plot(matx,'LineWidth',1.75);
 % set(hndl.fig(4),'Linestyle','--')
 % ADD ONS
-hline(0)
 box on; grid on;
-setplot([.45 .86 .25]) 
-setdateticks(dates, DateTickFrequency, DateFormat,FNs)
+setplot([0.07 .45 .86 .25]) 
+% setdateticks(dates, DateTickFrequency, DateFormat,FNs)
+setrotatedateticks(ftsdata.Time, DateTickFrequency, 'yyyy:mm', FNs);
 % setyticklabels(-4:2:12,0,FNs)
 set(gca,'GridLineStyle',':','GridAlpha',1/3)
+hline(0)
 % NOW MAKE OUTSIDE TICKS FOR TWO AXIS Y LABELS 
-% setoutsideTicks
-% add2yaxislabel
+setoutsideTicks
+add2yaxislabel
+
 
 
 % LEGEND

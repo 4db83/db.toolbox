@@ -84,6 +84,8 @@ if ~isempty(y_digits)
 % 	setyticklabels(13:.5:16);
 end
 	
+setytick(y_digits,fntsize,fighandle)
+
 % get axes handle and increase the thickness of lnes and choose grid value for color
 	ax = gca; 
  	ax.LineWidth = axLineWidth;

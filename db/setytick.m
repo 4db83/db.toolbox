@@ -23,7 +23,8 @@ SetDefaultValue(3, 'fig_handle' , gca);
 ytck		= get(fig_handle,'YTick');
 ytcklbl = get(fig_handle,'YTickLabel');
 
-f0      = find(ytck==0);           % find 0 value.
+%% f0      = find(ytck==0);                % find 0 value.
+f0      = find((abs(ytck)<10e-14));       % find 0 value.
 s22f    = ['%2.' num2str(d) 'f'];  %
 
 

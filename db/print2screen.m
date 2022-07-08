@@ -170,9 +170,9 @@ if (xlsout~=0)
 		xlsout_name = 'myprint_out.xls';
 	end
 	% now write to xls.
-	xlswrite(xlsout_name,ColNames_in,'Sheet1','B1');
-	xlswrite(xlsout_name,RowNames,'Sheet1','A2');
-	xlswrite(xlsout_name,y			 ,'Sheet1','B2');
+	xlswrite(xlsout_name,ColNames_in ,'Sheet1','B1');
+	xlswrite(xlsout_name,RowNames    ,'Sheet1','A1');
+	xlswrite(xlsout_name,y			     ,'Sheet1','B2');
 end
 
 end
