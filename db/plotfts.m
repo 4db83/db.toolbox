@@ -8,6 +8,15 @@ function varargout =  plotfts(ftsdata,DateTickFrequency,DateFormat,legON,LegName
 % legendflex(fighndl.fig,legnames,'Interpreter','Latex','Fontsize',14)
 % so then we have more control over it.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % TT is the timetable
+% TT.Properties.RowTimes        %no matter what the time column is named!
+% Idea 2: Access DimensionNames
+% The DimensionNames property stores the name of the time column in the first of two elements of a cell array. 
+% % This tells you the time column name
+% TT.Properties.DimensionNames{1}
+% % Change the name like this
+% TT.Properties.DimensionNames{1} = 'TimeName'; 
+
 
 % CHECK IF IT IS AN FTS OBJECT OR A TT OBJECT
 isTT = isa(ftsdata,'timetable');
@@ -48,7 +57,11 @@ hndl.fig = plot(matx,'LineWidth',1.75);
 box on; grid on;
 setplot([0.07 .45 .86 .25]) 
 % setdateticks(dates, DateTickFrequency, DateFormat,FNs)
-setrotatedateticks(ftsdata.Time, DateTickFrequency, 'yyyy:mm', FNs);
+
+% setrotatedateticks(ftsdata.Date, DateTickFrequency, 'yyyy:mm', FNs);
+setrotatedateticks(ftsdata.Properties.RowTimes, DateTickFrequency, 'yyyy:mm', FNs);
+% Properties.RowTimes
+% setrotatedateticks(ftsdata.Time, DateTickFrequency, 'yyyy:mm', FNs);
 % setyticklabels(-4:2:12,0,FNs)
 set(gca,'GridLineStyle',':','GridAlpha',1/3)
 hline(0)
